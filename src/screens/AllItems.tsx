@@ -5,7 +5,7 @@ import { arrObj } from './HomeScreen';
 const AllItems: React.FC<{data: arrObj[]}> = ({data}): React.JSX.Element => {
 //OR const AllItems = (data: arrObj[]): React.JSX.Element => {
   return (
-    <View>
+    <View style={{ paddingVertical: 5, paddingHorizontal: 3}}>
         <View style={styles.headingContainer}>
             <Text style={styles.headingTxt}>Items</Text>
             <Text style={styles.headingTxt}>Quantity</Text>

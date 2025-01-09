@@ -6,6 +6,8 @@ const CreateScreeen: React.FC<{data: arrObj[], setDummyData: React.Dispatch<Reac
 
   const [itemName, setItemName] = useState('')
   const [stockAmount, setStockAmount] = useState('')
+  const [isEdit, setIsEdit] = useState(false)
+  const [editItemId, setEditItemId] = useState<number | null>(null)
 
 
   // Create new item function 
@@ -20,13 +22,30 @@ const CreateScreeen: React.FC<{data: arrObj[], setDummyData: React.Dispatch<Reac
     setDummyData([...data, newItem])
     setItemName('')
     setStockAmount('')
+    setIsEdit(false)
   }
   //================================
 
   // Delete existing item function
-  const deleteItemHandler = (id: Number) => {
+  const deleteItemHandler = (id: number) => {
     setDummyData(data.filter((item) => item.id !== id))
   }
+  // ===================================
+
+  // Edit and Update existing item data function
+  const editItemHandler = (item: arrObj) => {
+    setIsEdit(true)
+    setItemName(item.name)
+    setEditItemId(item.id)
+  }
+
+  const updateItemHandler = () =>{
+    if(editItemId === null) return;
+    setDummyData(data.map((item) => (item.id === editItemId ? {...item, name: itemName, stock: Number(stockAmount)} : item)))
+  }
+  // ===============================
+
+
 
   return (
     <View style={styles.container}>
@@ -46,8 +65,8 @@ const CreateScreeen: React.FC<{data: arrObj[], setDummyData: React.Dispatch<Reac
       onChangeText={(item) => setStockAmount((item))}
       />
       
-      <Pressable style={styles.btn} onPress={() =>addItemHandler()}>
-        <Text>Add item in the stock</Text>
+      <Pressable style={styles.btn} onPress={() =>isEdit ? updateItemHandler() : addItemHandler()}>
+        <Text>{isEdit ? 'Edit item in the stock' : 'Add item in the stock'}</Text>
       </Pressable>
 
       <View>
@@ -64,7 +83,11 @@ const CreateScreeen: React.FC<{data: arrObj[], setDummyData: React.Dispatch<Reac
                       <Text style={styles.itemTxt}>{item.name}</Text>
                       <View style={{flexDirection: 'row', gap: 12}}>
                       <Text style={styles.itemTxt}>{item.stock}</Text>
-                      <Text style={styles.itemTxt}>Edit</Text>
+
+                      <Pressable onPress={() => editItemHandler(item)}>
+                        <Text style={styles.itemTxt}>Edit</Text>
+                      </Pressable>
+
                       <Pressable onPress={() => deleteItemHandler(item.id)}>
                         <Text style={styles.itemTxt}>Delete</Text>
                       </Pressable>

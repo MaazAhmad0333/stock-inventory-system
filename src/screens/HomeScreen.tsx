@@ -40,7 +40,7 @@ const HomeScreen = (): React.JSX.Element => {
       </View>
 
       {view === 0 && <AllItems data={dummyData} />}
-      {view === 1 && <AllItems  data={dummyData.filter((item) => item.stock < 20)}/>}
+      {view === 1 && <AllItems  data={dummyData.filter((item) =>item.stock < 20)}/>}
       {view === 2 && <CreateScreeen data={dummyData} setDummyData={setDummyData} />}
     </View>
   )
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
         padding: 15,
-        backgroundColor: '#ffffff'
+        backgroundColor: '#FEF3E2'
     },
     title: {
         fontSize: 24,
@@ -64,13 +64,15 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         gap: 10,
         marginVertical: 10,
+
     },
     button: {
         paddingVertical: 3.5,
         paddingHorizontal: 10,
         borderWidth: 0.8,
         borderRadius: 40,
-        borderColor: '72C37AFF'
+        borderColor: '#72C37AFF',
+        
     },
     btnText: {
         color: 'green',

@@ -7,6 +7,8 @@ const CreateScreeen: React.FC<{data: arrObj[], setDummyData: React.Dispatch<Reac
   const [itemName, setItemName] = useState('')
   const [stockAmount, setStockAmount] = useState('')
 
+
+  // Create new item function 
   const addItemHandler = () => {
     const newItem = {
       id: Date.now(),
@@ -18,6 +20,12 @@ const CreateScreeen: React.FC<{data: arrObj[], setDummyData: React.Dispatch<Reac
     setDummyData([...data, newItem])
     setItemName('')
     setStockAmount('')
+  }
+  //================================
+
+  // Delete existing item function
+  const deleteItemHandler = (id: Number) => {
+    setDummyData(data.filter((item) => item.id !== id))
   }
 
   return (
@@ -57,7 +65,9 @@ const CreateScreeen: React.FC<{data: arrObj[], setDummyData: React.Dispatch<Reac
                       <View style={{flexDirection: 'row', gap: 12}}>
                       <Text style={styles.itemTxt}>{item.stock}</Text>
                       <Text style={styles.itemTxt}>Edit</Text>
-                      <Text style={styles.itemTxt}>Delete</Text>
+                      <Pressable onPress={() => deleteItemHandler(item.id)}>
+                        <Text style={styles.itemTxt}>Delete</Text>
+                      </Pressable>
                       </View>
                   </View>
               )}

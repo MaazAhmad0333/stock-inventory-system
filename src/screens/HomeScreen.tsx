@@ -10,40 +10,38 @@ export type arrObj ={
     unit: string,
 }
 
-const dummyData: arrObj[] = [
-    {id:1, name: "Wheat", stock: 21, unit: "kg"},
-    {id:2, name: "Rice", stock: 5, unit: "kg"},
-    {id:3, name: "Corn", stock: 30, unit: "kg"},
-    {id:4, name: "Basmati Rice", stock: 5, unit: "kg"},
-]
-
-
 
 const HomeScreen = (): React.JSX.Element => {
     const [view, setview] = useState(0);
+    const [dummyData, setDummyData] = useState<arrObj[]>([
+        {id:1, name: "Wheat", stock: 21, unit: "kg"},
+        {id:2, name: "Rice", stock: 5, unit: "kg"},
+        {id:3, name: "Corn", stock: 30, unit: "kg"},
+        {id:4, name: "Basmati Rice", stock: 5, unit: "kg"},
+    ])
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Dashboard</Text>
       <View style={styles.btnContainer}>
 
-        <Pressable style={[styles.button, view === 0 ? {backgroundColor: 'green'} : null]} onPress={() => setview(0)}>
+        <Pressable style={[styles.button, view === 0 ? {backgroundColor: '#72C37AFF'} : null]} onPress={() => setview(0)}>
             <Text style={[styles.btnText, view === 0 ? {color: 'white'} : null]}>All Items</Text>
         </Pressable>
 
-        <Pressable style={[styles.button, view === 1 ? {backgroundColor: 'green'} : null]} onPress={() => setview(1)}>
+        <Pressable style={[styles.button, view === 1 ? {backgroundColor: '#72C37AFF'} : null]} onPress={() => setview(1)}>
             <Text style={[styles.btnText, view === 1 ? {color: 'white'} : null]}>Low Stock</Text>
         </Pressable>
 
-        <Pressable style={[styles.button, view === 2 ? {backgroundColor: 'green'} : null]} onPress={() => setview(2)}>
+        <Pressable style={[styles.button, view === 2 ? {backgroundColor: '#72C37AFF'} : null]} onPress={() => setview(2)}>
             <Text style={[styles.btnText, view === 2 ? {color: 'white'} : null]}>Create</Text>
         </Pressable>
 
       </View>
 
       {view === 0 && <AllItems data={dummyData} />}
-      {/* {view === 1 && <AllItems />} */}
-      {view === 2 && <CreateScreeen />}
+      {view === 1 && <AllItems  data={dummyData.filter((item) => item.stock < 20)}/>}
+      {view === 2 && <CreateScreeen data={dummyData} setDummyData={setDummyData} />}
     </View>
   )
 }
@@ -72,7 +70,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         borderWidth: 0.8,
         borderRadius: 40,
-        borderColor: 'green'
+        borderColor: '72C37AFF'
     },
     btnText: {
         color: 'green',

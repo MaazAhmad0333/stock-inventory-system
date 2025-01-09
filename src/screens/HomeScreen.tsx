@@ -18,6 +18,17 @@ const HomeScreen = (): React.JSX.Element => {
         {id:2, name: "Rice", stock: 5, unit: "kg"},
         {id:3, name: "Corn", stock: 30, unit: "kg"},
         {id:4, name: "Basmati Rice", stock: 5, unit: "kg"},
+        {id: 5, name: "Potatoes", stock: 50, unit: "kg"},
+        {id: 6, name: "Tomatoes", stock: 15, unit: "kg"},
+        {id: 7, name: "Onions", stock: 10, unit: "kg"},
+        {id: 8, name: "Carrots", stock: 25, unit: "kg"},
+        {id: 9, name: "Green Peas", stock: 12, unit: "kg"},
+        {id: 10, name: "Sugar", stock: 8, unit: "kg"},
+        {id: 11, name: "Salt", stock: 100, unit: "kg"},
+        {id: 12, name: "Milk Powder", stock: 40, unit: "kg"},
+        {id: 13, name: "Cooking Oil", stock: 20, unit: "liters"},
+        {id: 14, name: "Chickpeas", stock: 18, unit: "kg"},
+        {id: 15, name: "Lentils", stock: 22, unit: "kg"}
     ])
 
   return (
